@@ -11,12 +11,9 @@
   <meta property="og:description" content="IA executiva que coordena agentes, integra sistemas e executa com governança, trilhas de auditoria e segurança por design — pronta para B2B." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://danielgraebin.github.io/orkio-site/" />
-  <!-- Crie/coloque uma imagem em assets/og-orkio.png (ex.: 1200x630) -->
   <meta property="og:image" content="https://danielgraebin.github.io/orkio-site/assets/og-orkio.png" />
-
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0B0F14" />
-  <!-- Opcional: coloque um favicon em assets/favicon.ico -->
   <link rel="icon" href="assets/favicon.ico" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,12 +56,12 @@
 
     /* Topbar */
     .topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; }
-    .brand{ display:flex; align-items:center; gap:12px; min-width:260px; }
+    .brand{ display:flex; align-items:center; gap:16px; min-width:260px; }
 
-    /* Logo (estático / sem recorte / sem deformar) */
+    /* ✅ LOGO MAIOR + MAIS PROPORCIONAL */
     .logo-wrap{
-      width:52px; height:52px;
-      border-radius:14px;
+      width:64px; height:64px;
+      border-radius:18px;
       border:1px solid rgba(245,247,250,.12);
       background:rgba(255,255,255,.03);
       display:grid; place-items:center;
@@ -72,13 +69,19 @@
       overflow:visible;
     }
     .logo{
-      width:44px; height:44px;
+      width:46px; height:46px;
       object-fit:contain; object-position:center;
       display:block; border-radius:0;
       filter:drop-shadow(0 0 10px rgba(55,197,255,.22));
     }
 
-    .brand h3{ font-family:var(--font-title); letter-spacing:.06em; margin:0; font-size:15px; opacity:.95; }
+    .brand h3{
+      font-family:var(--font-title);
+      letter-spacing:.08em;
+      margin:0;
+      font-size:18px;
+      opacity:.95;
+    }
 
     .nav{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
     .nav a{ font-size:14px; opacity:.86; padding:8px 10px; border-radius:10px; border:1px solid transparent; }
@@ -247,11 +250,10 @@
     <div class="topbar">
       <div class="brand">
         <div class="logo-wrap">
-          <img class="logo" src="assets/orkio-logo.png" alt="ORKIO Logo" />
+          <img class="logo" src="assets/orkio-mark.png" alt="ORKIO Logo" />
         </div>
         <div>
           <h3>ORKIO™</h3>
-          <div class="muted small">by PatroAI</div>
         </div>
       </div>
 
@@ -286,7 +288,6 @@
           <a class="btn primary" href="#contato">Agendar demo (15 min)</a>
           <a class="btn" href="#organograma">Ver arquitetura</a>
 
-          <!-- WhatsApp (ícone) com mensagem pré-preenchida -->
           <a class="btn gold whatsapp"
              href="https://wa.me/5551989697605?text=Ol%C3%A1!%20Quero%20agendar%20uma%20demo%20do%20ORKIO.%20Meu%20nome%20%C3%A9%20____%20e%20o%20use%20case%20%C3%A9%20____."
              target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
@@ -342,7 +343,6 @@
         <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>B2B</span></span>
       </div>
 
-      <!-- 4 cards (2 col no desktop) -->
       <div class="grid grid-2">
         <div class="card">
           <h2>IA Centralizada</h2>
@@ -527,8 +527,6 @@
 
       <form action="https://formspree.io/f/SEU_ENDPOINT_FORMSPREE" method="POST">
         <input type="hidden" name="_subject" value="ORKIO — Solicitação de demo (15 min)" />
-
-        <!-- Honeypot anti-spam -->
         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
         <div class="row row-2">
@@ -582,6 +580,7 @@
 
       <footer>
         <span>© ORKIO™ • Private Beta</span>
+        <span class="muted small">ORKIO™ é um produto da PatroAI</span>
         <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Governable AI by PatroAI™</span></span>
       </footer>
     </section>
