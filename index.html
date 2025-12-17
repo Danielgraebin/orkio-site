@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Orkio — Orquestração de Agentes de IA</title>
+  <meta name="description" content="Orkio é uma plataforma GPT-like para chat, criação de agentes e orquestração intra-agentes com segurança e governança." />
+
+  <!-- Fonts (opcional). Se quiser 100% offline, pode remover. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700&family=Inter:wght@400;500&family=DM+Sans:ital,wght@1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* ORKIO Brand Identity System v1.0 */
+      --bg: #0B0F14;          /* Cosmos Black */
+      --panel: #1A2E45;       /* Deep Blue (hero mid) */
+      --border: #2C3239;      /* Graphite Grey */
+      --text: #F5F7FA;        /* Nebular White */
+      --muted: rgba(245,247,250,.72);
+
+      --primary: #37C5FF;     /* Electric Blue */
+      --primary2:#2bb0e8;     /* Hover */
+      --accent: #F6C453;      /* Aurora Gold */
+      --violet: #7D6BFF;      /* Violet Pulse (opcional) */
+
+      --radius-lg: 18px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --shadow-soft: 0 8px 22px rgba(0,0,0,.25);
+
+      --grid-gap: 16px;
+      --max: 1020px;
+
+      --font-title: "Exo 2", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      --font-slogan: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--font-body);
+      background: radial-gradient(1200px 700px at 50% -10%, rgba(55,197,255,.22), transparent 60%),
+                  radial-gradient(900px 600px at 70% 35%, rgba(125,107,255,.12), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{ color: var(--primary); text-decoration:none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+    }
+
+    /* Topbar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 200px;
+    }
+    .mark{
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 45% 35%, rgba(246,196,83,.95), rgba(246,196,83,.25) 45%, transparent 70%),
+        radial-gradient(circle at 50% 50%, rgba(55,197,255,.85), rgba(55,197,255,.15) 55%, transparent 72%);
+      box-shadow:
+        0 0 0 2px rgba(55,197,255,.45),
+        0 0 26px rgba(55,197,255,.35);
+    }
+    .brand h3{
+      font-family: var(--font-title);
+      letter-spacing: .06em;
+      margin:0;
+      font-size: 14px;
+      opacity: .92;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a{
+      font-size: 14px;
+      opacity: .85;
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+    .nav a:hover{
+      opacity: 1;
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+    }
+
+    /* Hero */
+    .hero{
+      position: relative;
+      border: 1px solid rgba(55,197,255,.18);
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      background: linear-gradient(135deg, #0B0F14 0%, #1A2E45 45%, rgba(55,197,255,.22) 100%);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(55,197,255,.18), transparent 55%),
+        radial-gradient(circle at 65% 55%, rgba(246,196,83,.12), transparent 55%);
+      filter: blur(14px);
+      pointer-events:none;
+    }
+    .hero-inner{ position:relative; z-index:1; }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,247,250,.15);
+      background: rgba(11,15,20,.35);
+      font-size: 13px;
+      opacity: .95;
+      backdrop-filter: blur(8px);
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(246,196,83,.35);
+    }
+
+    h1{
+      font-family: var(--font-title);
+      font-size: 44px;
+      line-height: 1.04;
+      margin: 14px 0 10px;
+      letter-spacing: .01em;
+    }
+
+    .lead{
+      font-size: 15.5px;
+      line-height: 1.7;
+      max-width: 740px;
+      opacity: .92;
+      margin: 0 0 16px;
+    }
+
+    .slogan{
+      font-family: var(--font-slogan);
+      font-style: italic;
+      opacity: .82;
+      margin-top: 6px;
+    }
+
+    .cta{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245,247,250,.18);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration:none;
+      box-shadow: var(--shadow-soft);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(55,197,255,.35);
+      background: rgba(255,255,255,.05);
+      text-decoration:none;
+    }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(55,197,255,.95), rgba(55,197,255,.72));
+      border-color: rgba(55,197,255,.65);
+      color: #061018;
+    }
+    .btn.primary:hover{
+      background: linear-gradient(180deg, rgba(43,176,232,.95), rgba(43,176,232,.72));
+      border-color: rgba(43,176,232,.75);
+      box-shadow: 0 10px 32px rgba(55,197,255,.22);
+    }
+    .btn.gold{
+      background: linear-gradient(180deg, rgba(246,196,83,.96), rgba(246,196,83,.70));
+      border-color: rgba(246,196,83,.70);
+      color: #1a1406;
+    }
+    .btn.gold:hover{
+      box-shadow: 0 10px 28px rgba(246,196,83,.18);
+      border-color: rgba(246,196,83,.85);
+    }
+
+    .muted{ opacity: .74; }
+    .small{ font-size: 14px; }
+    .sp{ height: 18px; }
+
+    /* Cards / grids */
+    .grid{
+      display:grid;
+      gap: var(--grid-gap);
+    }
+    @media(min-width: 880px){
+      .grid-2{ grid-template-columns: 1fr 1fr; }
+      .grid-3{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .card{
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(245,247,250,.12);
+      background: rgba(26,46,69,.24);
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      font-family: var(--font-title);
+      font-size: 18px;
+      margin: 0 0 10px;
+      letter-spacing: .01em;
+    }
+    .card p{ margin: 0; line-height: 1.65; opacity: .92; }
+    ul,ol{ margin: 10px 0 0 18px; }
+    li{ margin: 6px 0; opacity: .92; }
+
+    /* Section title */
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin: 18px 0 10px;
+    }
+    .section-title h2{
+      margin:0;
+      font-family: var(--font-title);
+      letter-spacing: .01em;
+    }
+
+    /* Form */
+    form{ margin-top: 10px; }
+    label{ font-size: 13px; opacity: .82; display:block; margin-bottom: 6px; }
+    input, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245,247,250,.14);
+      background: rgba(11,15,20,.55);
+      color: var(--text);
+      outline: none;
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(55,197,255,.55);
+      box-shadow: 0 0 0 4px rgba(55,197,255,.10);
+    }
+    .row{ display:grid; gap: 12px; }
+    @media(min-width: 880px){
+      .row-2{ grid-template-columns: 1fr 1fr; }
+    }
+    .hint{ margin-top: 10px; font-size: 13px; opacity: .72; }
+
+    /* Footer */
+    footer{
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(245,247,250,.10);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      opacity: .78;
+      font-size: 13px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,247,250,.12);
+      background: rgba(255,255,255,.03);
+    }
+    .chip .mini-dot{
+      width:8px;height:8px;border-radius:999px;background: var(--primary);
+      box-shadow: 0 0 12px rgba(55,197,255,.25);
+    }
+
+    /* Smooth anchors */
+    html{ scroll-behavior: smooth; }
+
+    /* Print-friendly minimal */
+    @media print{
+      .btn, .nav{ display:none !important; }
+      body{ background:white; color:#111; }
+      .card, .hero{ box-shadow:none; background:white; border-color:#ddd; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h3>ORKIO™</h3>
+          <div class="muted small">by PatroAI</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navegação">
+        <a href="#sobre">Sobre</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner">
+        <span class="tag"><span class="dot" aria-hidden="true"></span> Private Beta • B2B-ready • Segurança & Governança</span>
+        <h1>Orkio — Orquestração de Agentes de IA</h1>
+
+        <p class="lead">
+          Uma plataforma <b>GPT-like</b> para <b>Chat</b>, <b>Studio</b> e <b>orquestração intra-agentes</b>,
+          com <b>conectores</b> e <b>auditoria</b> para projetos reais — com proteção de dados por desenho.
+        </p>
+
+        <div class="slogan">“Onde a inteligência encontra harmonia.”</div>
+
+        <div class="cta">
+          <a class="btn primary" href="#contato">Solicitar apresentação técnica</a>
+          <a class="btn" href="#sobre">Ver visão geral</a>
+          <a class="btn gold" href="#contato">Entrar no Private Beta</a>
+        </div>
+
+        <div class="hint">
+          Acesso liberado sob convite para parceiros, pilotos e competições.
+        </div>
+      </div>
+    </section>
+
+    <div class="sp"></div>
+
+    <section id="sobre" class="grid grid-2" aria-label="Sobre">
+      <div class="card">
+        <h2>O problema</h2>
+        <p>
+          Times querem usar IA para executar projetos reais, mas sofrem com ferramentas soltas e sem governança:
+          chat aqui, automação ali — e pouca rastreabilidade.
+        </p>
+        <ul class="small">
+          <li>Baixa auditabilidade e risco de vazamento</li>
+          <li>Integrações fragmentadas e difíceis de manter</li>
+          <li>Falta de isolamento por organização (B2B)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>A solução</h2>
+        <p>
+          O Orkio funciona como um “sistema operacional de agentes”:
+          você cria agentes, conecta agentes entre si e integra serviços externos por API —
+          com políticas, logs e governança.
+        </p>
+        <ul class="small">
+          <li><b>Chat</b> (threads, arquivos, ações)</li>
+          <li><b>Studio</b> (builder de agentes)</li>
+          <li><b>Agents Graph</b> (handoff, notify, invoke)</li>
+          <li><b>Connectors Hub</b> + <b>Trust & Audit</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="sp"></div>
+
+    <section id="diferenciais" class="grid grid-3" aria-label="Diferenciais">
+      <div class="card">
+        <h2>Intra-agentes nativo</h2>
+        <p>
+          Agentes colaboram como rede: handoff/invoke entre agentes e fluxos compostos sem “gambiarra” de workflow.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Escopo → provisionamento</h2>
+        <p>
+          Auto-config por escopo: ao descrever o projeto, o Orkio prepara agentes, integrações e políticas para executar.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Governança & confiança</h2>
+        <p>
+          Projetado para B2B: isolamento por organização, trilhas de auditoria e políticas para preservar dados em plenitude.
+        </p>
+      </div>
+    </section>
+
+    <div class="sp"></div>
+
+    <section id="como-funciona" class="card" aria-label="Como funciona">
+      <div class="section-title">
+        <h2>Como funciona</h2>
+        <div class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Fluxo simples</span></div>
+      </div>
+
+      <ol class="small">
+        <li>Você define o escopo do projeto (objetivos, integrações, restrições).</li>
+        <li>O Orkio provisiona agentes, links intra-agentes, conectores e políticas.</li>
+        <li>Os agentes executam e colaboram em rede para entregar o resultado.</li>
+        <li>Você acompanha logs, políticas e outputs, com rastreabilidade e governança.</li>
+      </ol>
+
+      <p class="muted small" style="margin-top:10px;">
+        *O link de demo/app pode ser adicionado aqui depois (ex.: <b>app.orkio.com</b>) sem refazer o site.
+      </p>
+    </section>
+
+    <div class="sp"></div>
+
+    <section id="contato" class="card" aria-label="Contato">
+      <h2>Solicitar apresentação técnica</h2>
+      <p class="small muted">
+        Este formulário está como placeholder. Quando quiser, você pode conectar em <b>Tally</b>, <b>Formspree</b>,
+        <b>Google Forms</b> ou endpoint próprio do Orkio.
+      </p>
+
+      <form action="#" method="post"
+            onsubmit="alert('Formulário de exemplo. Conecte em Tally/Formspree/Google Forms quando quiser.'); return false;">
+        <div class="row row-2">
+          <div>
+            <label>Nome</label>
+            <input required placeholder="Seu nome" />
+          </div>
+          <div>
+            <label>Empresa</label>
+            <input placeholder="Nome da empresa" />
+          </div>
+        </div>
+
+        <div class="row row-2" style="margin-top:12px;">
+          <div>
+            <label>Email</label>
+            <input type="email" placeholder="voce@empresa.com" />
+          </div>
+          <div>
+            <label>WhatsApp</label>
+            <input placeholder="+55 (xx) xxxxx-xxxx" />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px;">
+          <div>
+            <label>Use case (o que você quer automatizar?)</label>
+            <textarea rows="4" placeholder="Ex.: atendimento, backoffice, originação, compliance, relatórios..."></textarea>
+          </div>
+        </div>
+
+        <div class="cta" style="margin-top:14px;">
+          <button class="btn primary" type="submit">Enviar</button>
+          <a class="btn" href="#sobre">Voltar</a>
+        </div>
+
+        <div class="hint">
+          Dica: se preferir, substitua este bloco por um link de Calendly/WhatsApp direto.
+        </div>
+      </form>
+
+      <footer>
+        <span>© ORKIO™ • Private Beta</span>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Governable AI by PatroAI™</span></span>
+      </footer>
+    </section>
+  </div>
+</body>
+</html>
