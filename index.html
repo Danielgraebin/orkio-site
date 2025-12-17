@@ -22,7 +22,7 @@
       --primary: #37C5FF;     /* Electric Blue */
       --primary2:#2bb0e8;     /* Hover */
       --accent: #F6C453;      /* Aurora Gold */
-      --violet: #7D6BFF;      /* Violet Pulse (opcional) */
+      --violet: #7D6BFF;      /* Violet Pulse */
 
       --radius-lg: 18px;
       --radius-md: 16px;
@@ -32,11 +32,14 @@
       --shadow-soft: 0 8px 22px rgba(0,0,0,.25);
 
       --grid-gap: 16px;
-      --max: 1020px;
+      --max: 1120px;
 
       --font-title: "Exo 2", system-ui, -apple-system, Segoe UI, Roboto, Arial;
       --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
       --font-slogan: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+
+      --ring: rgba(55,197,255,.22);
+      --ring2: rgba(246,196,83,.18);
     }
 
     *{ box-sizing:border-box; }
@@ -46,9 +49,10 @@
     body{
       margin:0;
       font-family: var(--font-body);
-      background: radial-gradient(1200px 700px at 50% -10%, rgba(55,197,255,.22), transparent 60%),
-                  radial-gradient(900px 600px at 70% 35%, rgba(125,107,255,.12), transparent 60%),
-                  var(--bg);
+      background:
+        radial-gradient(1200px 700px at 50% -10%, rgba(55,197,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 70% 35%, rgba(125,107,255,.12), transparent 60%),
+        var(--bg);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -60,7 +64,7 @@
     .wrap{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 48px 20px 64px;
+      padding: 46px 18px 70px;
     }
 
     /* Topbar */
@@ -75,36 +79,53 @@
       display:flex;
       align-items:center;
       gap:12px;
-      min-width: 220px;
+      min-width: 260px;
     }
 
-    /* Logo pulsante */
+    /* ✅ LOGO FIX: não cortar, não deformar, manter proporção */
     .logo-wrap{
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(245,247,250,.12);
+      background: rgba(255,255,255,.03);
       display:grid;
       place-items:center;
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
       position: relative;
+      overflow: hidden; /* mantém o “card”, mas SEM achatar o logo */
+    }
+    .logo-wrap:before{
+      content:"";
+      position:absolute;
+      inset:-60%;
+      background:
+        radial-gradient(circle at 40% 35%, rgba(55,197,255,.22), transparent 55%),
+        radial-gradient(circle at 65% 60%, rgba(246,196,83,.16), transparent 55%);
+      filter: blur(10px);
+      pointer-events:none;
     }
     .logo{
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
+      object-fit: contain;   /* ✅ mantém proporção */
+      object-position: center;
       display:block;
-      border-radius: 999px;
-      filter: drop-shadow(0 0 12px rgba(55,197,255,.30));
-      animation: orkioPulse 3.2s ease-in-out infinite;
+      filter: drop-shadow(0 0 16px rgba(55,197,255,.35));
+      animation: orkioPulse 3.3s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
     }
     @keyframes orkioPulse{
       0%,100%{
         transform: scale(1);
-        filter: drop-shadow(0 0 12px rgba(55,197,255,.30)) drop-shadow(0 0 10px rgba(246,196,83,.10));
         opacity: .95;
+        filter: drop-shadow(0 0 14px rgba(55,197,255,.32)) drop-shadow(0 0 10px rgba(246,196,83,.10));
       }
       50%{
-        transform: scale(1.04);
-        filter: drop-shadow(0 0 22px rgba(55,197,255,.55)) drop-shadow(0 0 16px rgba(246,196,83,.18));
+        transform: scale(1.06);
         opacity: 1;
+        filter: drop-shadow(0 0 22px rgba(55,197,255,.55)) drop-shadow(0 0 16px rgba(246,196,83,.20));
       }
     }
 
@@ -112,26 +133,28 @@
       font-family: var(--font-title);
       letter-spacing: .06em;
       margin:0;
-      font-size: 14px;
-      opacity: .92;
+      font-size: 15px;
+      opacity: .95;
     }
 
     .nav{
       display:flex;
       align-items:center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
     .nav a{
       font-size: 14px;
-      opacity: .85;
+      opacity: .86;
       padding: 8px 10px;
       border-radius: 10px;
+      border: 1px solid transparent;
     }
     .nav a:hover{
       opacity: 1;
       background: rgba(255,255,255,.04);
+      border-color: rgba(245,247,250,.10);
       text-decoration:none;
     }
 
@@ -140,7 +163,7 @@
       position: relative;
       border: 1px solid rgba(55,197,255,.18);
       border-radius: var(--radius-lg);
-      padding: 34px;
+      padding: 36px 34px;
       background: linear-gradient(135deg, #0B0F14 0%, #1A2E45 45%, rgba(55,197,255,.22) 100%);
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -150,8 +173,8 @@
       position:absolute;
       inset:-40%;
       background:
-        radial-gradient(circle at 35% 35%, rgba(55,197,255,.18), transparent 55%),
-        radial-gradient(circle at 65% 55%, rgba(246,196,83,.12), transparent 55%);
+        radial-gradient(circle at 30% 30%, rgba(55,197,255,.18), transparent 55%),
+        radial-gradient(circle at 70% 60%, rgba(246,196,83,.12), transparent 55%);
       filter: blur(14px);
       pointer-events:none;
     }
@@ -177,16 +200,16 @@
 
     h1{
       font-family: var(--font-title);
-      font-size: 44px;
+      font-size: 46px;
       line-height: 1.04;
       margin: 14px 0 10px;
       letter-spacing: .01em;
     }
 
     .lead{
-      font-size: 15.5px;
-      line-height: 1.7;
-      max-width: 780px;
+      font-size: 16px;
+      line-height: 1.75;
+      max-width: 900px;
       opacity: .92;
       margin: 0 0 16px;
     }
@@ -194,7 +217,7 @@
     .slogan{
       font-family: var(--font-slogan);
       font-style: italic;
-      opacity: .82;
+      opacity: .86;
       margin-top: 6px;
     }
 
@@ -251,10 +274,11 @@
     .muted{ opacity: .74; }
     .small{ font-size: 14px; }
     .sp{ height: 18px; }
+    .sp2{ height: 24px; }
 
     /* Cards / grids */
     .grid{ display:grid; gap: var(--grid-gap); }
-    @media(min-width: 880px){
+    @media(min-width: 920px){
       .grid-2{ grid-template-columns: 1fr 1fr; }
       .grid-3{ grid-template-columns: 1fr 1fr 1fr; }
     }
@@ -269,11 +293,11 @@
     }
     .card h2{
       font-family: var(--font-title);
-      font-size: 18px;
+      font-size: 19px;
       margin: 0 0 10px;
       letter-spacing: .01em;
     }
-    .card p{ margin: 0; line-height: 1.65; opacity: .92; }
+    .card p{ margin: 0; line-height: 1.7; opacity: .92; }
     ul,ol{ margin: 10px 0 0 18px; }
     li{ margin: 6px 0; opacity: .92; }
 
@@ -282,12 +306,49 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      margin: 18px 0 10px;
+      margin: 18px 0 12px;
     }
     .section-title h2{
       margin:0;
       font-family: var(--font-title);
       letter-spacing: .01em;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,247,250,.12);
+      background: rgba(255,255,255,.03);
+      font-size: 13px;
+      opacity: .9;
+    }
+    .chip .mini-dot{
+      width:8px;height:8px;border-radius:999px;background: var(--primary);
+      box-shadow: 0 0 12px rgba(55,197,255,.25);
+    }
+
+    /* Org chart */
+    .org{
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(245,247,250,.10);
+      background: rgba(11,15,20,.35);
+      overflow: auto;
+    }
+    .org svg{
+      width: 100%;
+      height: auto;
+      min-width: 880px; /* garante legibilidade em desktop */
+      display:block;
+    }
+    .org-note{
+      margin-top: 12px;
+      font-size: 13px;
+      opacity: .72;
+      line-height: 1.6;
     }
 
     /* Form */
@@ -308,7 +369,7 @@
       box-shadow: 0 0 0 4px rgba(55,197,255,.10);
     }
     .row{ display:grid; gap: 12px; }
-    @media(min-width: 880px){
+    @media(min-width: 920px){
       .row-2{ grid-template-columns: 1fr 1fr; }
     }
     .hint{ margin-top: 10px; font-size: 13px; opacity: .72; }
@@ -324,19 +385,6 @@
       gap: 10px;
       opacity: .78;
       font-size: 13px;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(245,247,250,.12);
-      background: rgba(255,255,255,.03);
-    }
-    .chip .mini-dot{
-      width:8px;height:8px;border-radius:999px;background: var(--primary);
-      box-shadow: 0 0 12px rgba(55,197,255,.25);
     }
 
     @media print{
@@ -362,8 +410,8 @@
 
       <nav class="nav" aria-label="Navegação">
         <a href="#sobre">Sobre</a>
-        <a href="#diferenciais">Diferenciais</a>
-        <a href="#como-funciona">Como funciona</a>
+        <a href="#plataforma">Plataforma</a>
+        <a href="#organograma">Organograma AI</a>
         <a href="#blog">Blog</a>
         <a href="#contato">Contato</a>
       </nav>
@@ -376,32 +424,198 @@
 
         <p class="lead">
           Uma plataforma <b>GPT-like</b> para <b>Chat</b>, <b>Studio</b> e <b>orquestração intra-agentes</b>,
-          com <b>conectores</b> e <b>auditoria</b> para projetos reais — com proteção de dados por desenho.
+          com <b>conectores</b>, <b>auditoria</b> e <b>políticas</b> — para executar projetos reais com proteção de dados por desenho.
         </p>
 
         <div class="slogan">“Onde a inteligência encontra harmonia.”</div>
 
         <div class="cta">
           <a class="btn primary" href="#contato">Solicitar apresentação técnica</a>
-          <a class="btn" href="#sobre">Ver visão geral</a>
-          <a class="btn gold" href="https://wa.me/5551989697605" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          <a class="btn" href="#organograma">Ver Organograma AI</a>
+          <a class="btn gold" href="https://wa.me/5551989697605" target="_blank" rel="noopener">WhatsApp: +55 51 98969-7605</a>
         </div>
 
         <div class="hint">
-          WhatsApp: <a href="https://wa.me/5551989697605" target="_blank" rel="noopener">+55 51 98969-7605</a>
+          Preferência: contato direto por WhatsApp para demo técnica e acesso ao Private Beta.
         </div>
       </div>
     </section>
 
-    <div class="sp"></div>
+    <div class="sp2"></div>
 
     <section id="sobre" class="grid grid-2" aria-label="Sobre">
       <div class="card">
         <h2>O problema</h2>
         <p>
-          Times querem usar IA para executar projetos reais, mas sofrem com ferramentas soltas e sem governança:
+          Empresas querem usar IA para execução real (B2B), mas sofrem com ferramentas soltas e sem governança:
           chat aqui, automação ali — e pouca rastreabilidade.
         </p>
         <ul class="small">
-          <li>
+          <li>Baixa auditabilidade e risco de vazamento</li>
+          <li>Integrações fragmentadas e difíceis de manter</li>
+          <li>Falta de isolamento por organização (multi-tenant)</li>
+          <li>Sem política clara de acesso, retenção e trilhas</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>O que é o Orkio</h2>
+        <p>
+          O Orkio é um “sistema operacional de agentes”: você cria agentes, conecta agentes entre si e integra serviços externos por API —
+          com <b>políticas</b>, <b>logs</b> e <b>governança</b>.
+        </p>
+        <ul class="small">
+          <li><b>Chat</b> (threads, arquivos, ações)</li>
+          <li><b>Studio</b> (builder e configuração de agentes)</li>
+          <li><b>Agents Graph</b> (handoff, notify, invoke)</li>
+          <li><b>Connectors Hub</b> + <b>Trust & Audit</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="sp2"></div>
+
+    <section id="plataforma" class="grid grid-3" aria-label="Plataforma">
+      <div class="card">
+        <h2>Chat GPT-like</h2>
+        <p>Threads, anexos, contexto e ações. Uma experiência familiar, com governança para B2B.</p>
+      </div>
+
+      <div class="card">
+        <h2>Studio</h2>
+        <p>Criação de agentes com políticas, memória/arquivos e integrações — pronto para múltiplas verticais.</p>
+      </div>
+
+      <div class="card">
+        <h2>Agents Graph</h2>
+        <p>Integração intra-agentes nativa: handoff e execução coordenada com rastreabilidade ponta a ponta.</p>
+      </div>
+    </section>
+
+    <div class="sp2"></div>
+
+    <section id="organograma" class="card" aria-label="Organograma AI">
+      <div class="section-title">
+        <h2>Organograma AI (exemplo de arquitetura operacional)</h2>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Multi-agentes</span></span>
+      </div>
+
+      <p class="small muted">
+        Uma forma simples e visual de explicar o Orkio para competição/investidor: “uma empresa operada por agentes”, com governança e integração.
+      </p>
+
+      <div class="org" role="img" aria-label="Organograma AI">
+        <!-- Organograma em SVG (não precisa imagem externa) -->
+        <svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gBlue" x1="0" x2="1">
+              <stop offset="0" stop-color="#37C5FF" stop-opacity="0.95"/>
+              <stop offset="1" stop-color="#2bb0e8" stop-opacity="0.75"/>
+            </linearGradient>
+            <linearGradient id="gGold" x1="0" x2="1">
+              <stop offset="0" stop-color="#F6C453" stop-opacity="0.95"/>
+              <stop offset="1" stop-color="#F6C453" stop-opacity="0.70"/>
+            </linearGradient>
+            <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="6" result="b"/>
+              <feColorMatrix in="b" type="matrix"
+                values="0 0 0 0 0.21
+                        0 0 0 0 0.77
+                        0 0 0 0 1
+                        0 0 0 0.9 0"/>
+              <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <style>
+              .node { rx:16; ry:16; }
+              .label { font-family: Inter, Arial; font-size: 16px; fill: #F5F7FA; }
+              .sub { font-family: Inter, Arial; font-size: 13px; fill: rgba(245,247,250,.78); }
+              .line { stroke: rgba(245,247,250,.18); stroke-width: 2; }
+              .line2 { stroke: rgba(55,197,255,.28); stroke-width: 2; }
+            </style>
+          </defs>
+
+          <!-- Top Node -->
+          <rect x="430" y="40" width="340" height="84" class="node" fill="url(#gBlue)" filter="url(#glow)"/>
+          <text x="600" y="78" text-anchor="middle" class="label" style="fill:#061018;font-weight:700;">CEO AI</text>
+          <text x="600" y="102" text-anchor="middle" class="sub" style="fill:#061018;opacity:.85;">Orquestração • Estratégia • Decisão</text>
+
+          <!-- Lines down -->
+          <line x1="600" y1="124" x2="600" y2="170" class="line"/>
+          <line x1="180" y1="170" x2="1020" y2="170" class="line"/>
+
+          <!-- Row 2 Nodes -->
+          <!-- CTO AI -->
+          <line x1="300" y1="170" x2="300" y2="214" class="line2"/>
+          <rect x="170" y="214" width="260" height="80" class="node" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
+          <text x="300" y="248" text-anchor="middle" class="label">CTO AI</text>
+          <text x="300" y="272" text-anchor="middle" class="sub">Plataforma • APIs • Conectores</text>
+
+          <!-- CFO AI -->
+          <line x1="600" y1="170" x2="600" y2="214" class="line2"/>
+          <rect x="470" y="214" width="260" height="80" class="node" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
+          <text x="600" y="248" text-anchor="middle" class="label">CFO AI</text>
+          <text x="600" y="272" text-anchor="middle" class="sub">Métricas • Unit economics • Relatórios</text>
+
+          <!-- COO AI -->
+          <line x1="900" y1="170" x2="900" y2="214" class="line2"/>
+          <rect x="770" y="214" width="260" height="80" class="node" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
+          <text x="900" y="248" text-anchor="middle" class="label">COO AI</text>
+          <text x="900" y="272" text-anchor="middle" class="sub">Execução • Workflows • SLA</text>
+
+          <!-- Row 3 connectors -->
+          <line x1="300" y1="294" x2="300" y2="330" class="line"/>
+          <line x1="600" y1="294" x2="600" y2="330" class="line"/>
+          <line x1="900" y1="294" x2="900" y2="330" class="line"/>
+
+          <!-- Row 3 nodes under CTO -->
+          <rect x="70" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="185" y="360" text-anchor="middle" class="label">Agent Builder</text>
+          <text x="185" y="382" text-anchor="middle" class="sub">Studio • Policies • Memory</text>
+
+          <rect x="310" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="425" y="360" text-anchor="middle" class="label">Connectors Hub</text>
+          <text x="425" y="382" text-anchor="middle" class="sub">Manus • WhatsApp • CRM</text>
+
+          <!-- Under CFO -->
+          <rect x="485" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="600" y="360" text-anchor="middle" class="label">Analytics</text>
+          <text x="600" y="382" text-anchor="middle" class="sub">KPIs • Dashboards • Exports</text>
+
+          <!-- Under COO -->
+          <rect x="725" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="840" y="360" text-anchor="middle" class="label">Orchestrator</text>
+          <text x="840" y="382" text-anchor="middle" class="sub">Scope → Provisioning</text>
+
+          <rect x="965" y="330" width="190" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="1060" y="360" text-anchor="middle" class="label">Trust & Audit</text>
+          <text x="1060" y="382" text-anchor="middle" class="sub">RBAC/ABAC • Logs</text>
+
+          <!-- Golden hint node -->
+          <rect x="430" y="430" width="340" height="62" class="node" fill="url(#gGold)"/>
+          <text x="600" y="468" text-anchor="middle" class="label" style="fill:#1a1406;font-weight:700;">
+            Aplicável a qualquer vertical (Fintech • Consultech • etc.)
+          </text>
+        </svg>
+      </div>
+
+      <div class="org-note">
+        Se você quiser, eu adapto este organograma para refletir os nomes reais dos seus agentes (Chris VP, Laura BP, Auditor AA, AE-02, Integrador AI, Tester AT etc.)
+        e deixo isso como “slide” dentro do próprio site.
+      </div>
+    </section>
+
+    <div class="sp2"></div>
+
+    <section id="blog" class="card" aria-label="Blog">
+      <div class="section-title">
+        <h2>Blog</h2>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Atualizações</span></span>
+      </div>
+      <p class="small muted">Posts curtos no estilo “changelog” para competição, investidores e parceiros.</p>
+      <ul class="small">
+        <li><a href="blog/2025-12-17-orkio-why.html">Por que Orkio: a plataforma de orquestração c
+
 
