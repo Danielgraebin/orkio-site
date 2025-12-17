@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Orkio — Orquestração de Agentes de IA</title>
-  <meta name="description" content="Orkio é uma plataforma GPT-like para chat, criação de agentes e orquestração intra-agentes com segurança e governança." />
+  <title>Orkio — IA Executiva que coordena o seu negócio</title>
+  <meta name="description" content="Orkio é uma IA executiva que coordena seu negócio: orquestra agentes, integra sistemas e executa com governança, segurança e rastreabilidade." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,9 +37,6 @@
       --font-title: "Exo 2", system-ui, -apple-system, Segoe UI, Roboto, Arial;
       --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
       --font-slogan: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-
-      --ring: rgba(55,197,255,.22);
-      --ring2: rgba(246,196,83,.18);
     }
 
     *{ box-sizing:border-box; }
@@ -82,7 +79,7 @@
       min-width: 260px;
     }
 
-    /* ✅ LOGO FIX: não cortar, não deformar, manter proporção */
+    /* Logo fix: não cortar / não deformar / manter proporção */
     .logo-wrap{
       width: 44px;
       height: 44px;
@@ -93,7 +90,7 @@
       place-items:center;
       box-shadow: 0 10px 24px rgba(0,0,0,.25);
       position: relative;
-      overflow: hidden; /* mantém o “card”, mas SEM achatar o logo */
+      overflow: hidden;
     }
     .logo-wrap:before{
       content:"";
@@ -108,7 +105,7 @@
     .logo{
       width: 34px;
       height: 34px;
-      object-fit: contain;   /* ✅ mantém proporção */
+      object-fit: contain;
       object-position: center;
       display:block;
       filter: drop-shadow(0 0 16px rgba(55,197,255,.35));
@@ -163,7 +160,7 @@
       position: relative;
       border: 1px solid rgba(55,197,255,.18);
       border-radius: var(--radius-lg);
-      padding: 36px 34px;
+      padding: 38px 34px;
       background: linear-gradient(135deg, #0B0F14 0%, #1A2E45 45%, rgba(55,197,255,.22) 100%);
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -201,7 +198,7 @@
     h1{
       font-family: var(--font-title);
       font-size: 46px;
-      line-height: 1.04;
+      line-height: 1.06;
       margin: 14px 0 10px;
       letter-spacing: .01em;
     }
@@ -209,16 +206,17 @@
     .lead{
       font-size: 16px;
       line-height: 1.75;
-      max-width: 900px;
+      max-width: 920px;
       opacity: .92;
-      margin: 0 0 16px;
+      margin: 0 0 10px;
     }
 
     .slogan{
       font-family: var(--font-slogan);
       font-style: italic;
-      opacity: .86;
-      margin-top: 6px;
+      opacity: .88;
+      margin-top: 10px;
+      line-height: 1.5;
     }
 
     .cta{
@@ -293,7 +291,7 @@
     }
     .card h2{
       font-family: var(--font-title);
-      font-size: 19px;
+      font-size: 20px;
       margin: 0 0 10px;
       letter-spacing: .01em;
     }
@@ -341,7 +339,7 @@
     .org svg{
       width: 100%;
       height: auto;
-      min-width: 880px; /* garante legibilidade em desktop */
+      min-width: 880px;
       display:block;
     }
     .org-note{
@@ -372,7 +370,7 @@
     @media(min-width: 920px){
       .row-2{ grid-template-columns: 1fr 1fr; }
     }
-    .hint{ margin-top: 10px; font-size: 13px; opacity: .72; }
+    .hint{ margin-top: 10px; font-size: 13px; opacity: .72; line-height: 1.6; }
 
     footer{
       margin-top: 22px;
@@ -400,6 +398,7 @@
     <div class="topbar">
       <div class="brand">
         <div class="logo-wrap">
+          <!-- Suba o logo no repo em: assets/orkio-logo.png -->
           <img class="logo" src="assets/orkio-logo.png" alt="ORKIO Logo" />
         </div>
         <div>
@@ -410,7 +409,8 @@
 
       <nav class="nav" aria-label="Navegação">
         <a href="#sobre">Sobre</a>
-        <a href="#plataforma">Plataforma</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#casos">Uso na prática</a>
         <a href="#organograma">Organograma AI</a>
         <a href="#blog">Blog</a>
         <a href="#contato">Contato</a>
@@ -420,23 +420,30 @@
     <section class="hero" aria-label="Hero">
       <div class="hero-inner">
         <span class="tag"><span class="dot" aria-hidden="true"></span> Private Beta • B2B-ready • Segurança & Governança</span>
-        <h1>Orkio — Orquestração de Agentes de IA</h1>
+
+        <h1>
+          Uma IA executiva<br>
+          que coordena o seu negócio
+        </h1>
 
         <p class="lead">
-          Uma plataforma <b>GPT-like</b> para <b>Chat</b>, <b>Studio</b> e <b>orquestração intra-agentes</b>,
-          com <b>conectores</b>, <b>auditoria</b> e <b>políticas</b> — para executar projetos reais com proteção de dados por desenho.
+          O <b>Orkio</b> funciona como um <b>cérebro operacional de IA</b>: coordena agentes especializados,
+          integra sistemas e executa decisões com <b>governança</b>, <b>rastreamento ponta a ponta</b> e <b>segurança por design</b>.
         </p>
 
-        <div class="slogan">“Onde a inteligência encontra harmonia.”</div>
+        <div class="slogan">
+          “Onde a inteligência encontra harmonia.”<br>
+          <span class="muted">Não é um chatbot. É uma estrutura de decisão e execução.</span>
+        </div>
 
         <div class="cta">
           <a class="btn primary" href="#contato">Solicitar apresentação técnica</a>
-          <a class="btn" href="#organograma">Ver Organograma AI</a>
+          <a class="btn" href="#diferenciais">Ver por que é diferente</a>
           <a class="btn gold" href="https://wa.me/5551989697605" target="_blank" rel="noopener">WhatsApp: +55 51 98969-7605</a>
         </div>
 
         <div class="hint">
-          Preferência: contato direto por WhatsApp para demo técnica e acesso ao Private Beta.
+          Acesso ao Orkio (demo) sob convite. Contato direto: <a href="https://wa.me/5551989697605" target="_blank" rel="noopener">WhatsApp</a>.
         </div>
       </div>
     </section>
@@ -447,7 +454,7 @@
       <div class="card">
         <h2>O problema</h2>
         <p>
-          Empresas querem usar IA para execução real (B2B), mas sofrem com ferramentas soltas e sem governança:
+          Empresas querem usar IA para executar projetos reais, mas sofrem com ferramentas soltas e sem governança:
           chat aqui, automação ali — e pouca rastreabilidade.
         </p>
         <ul class="small">
@@ -461,11 +468,11 @@
       <div class="card">
         <h2>O que é o Orkio</h2>
         <p>
-          O Orkio é um “sistema operacional de agentes”: você cria agentes, conecta agentes entre si e integra serviços externos por API —
-          com <b>políticas</b>, <b>logs</b> e <b>governança</b>.
+          O Orkio é uma <b>IA executiva</b> que coordena agentes e ferramentas como uma organização real:
+          você define o objetivo, e o Orkio distribui, integra, executa e registra — com políticas e auditoria.
         </p>
         <ul class="small">
-          <li><b>Chat</b> (threads, arquivos, ações)</li>
+          <li><b>Chat GPT-like</b> (threads, arquivos, ações)</li>
           <li><b>Studio</b> (builder e configuração de agentes)</li>
           <li><b>Agents Graph</b> (handoff, notify, invoke)</li>
           <li><b>Connectors Hub</b> + <b>Trust & Audit</b></li>
@@ -475,37 +482,72 @@
 
     <div class="sp2"></div>
 
-    <section id="plataforma" class="grid grid-3" aria-label="Plataforma">
-      <div class="card">
-        <h2>Chat GPT-like</h2>
-        <p>Threads, anexos, contexto e ações. Uma experiência familiar, com governança para B2B.</p>
+    <section id="diferenciais" class="card" aria-label="Diferenciais">
+      <div class="section-title">
+        <h2>Por que o Orkio é diferente</h2>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>IA Executiva</span></span>
       </div>
 
-      <div class="card">
-        <h2>Studio</h2>
-        <p>Criação de agentes com políticas, memória/arquivos e integrações — pronto para múltiplas verticais.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <h2>IA Centralizada</h2>
+          <p>
+            Em vez de dezenas de IAs soltas, o Orkio cria <b>um núcleo central de decisão</b>
+            que coordena agentes, dados e sistemas do negócio.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Agentes como Executivos</h2>
+          <p>
+            Cada agente tem papel claro: <b>CEO AI</b>, <b>CFO AI</b>, Operações, Dados, Compliance.
+            Eles colaboram como uma organização real — com handoffs e responsabilidades.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Governança por Design</h2>
+          <p>
+            Logs, políticas, isolamento por organização e auditoria <b>não são extras</b>.
+            São parte da arquitetura desde o início — ideal para B2B.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="sp2"></div>
+
+    <section id="casos" class="card" aria-label="Uso na prática">
+      <div class="section-title">
+        <h2>O que o Orkio faz na prática</h2>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Casos reais</span></span>
       </div>
 
-      <div class="card">
-        <h2>Agents Graph</h2>
-        <p>Integração intra-agentes nativa: handoff e execução coordenada com rastreabilidade ponta a ponta.</p>
-      </div>
+      <ul class="small">
+        <li><b>Fintech:</b> CEO AI define estratégia → CFO AI analisa métricas → agentes executam onboarding, risco, compliance e relatórios auditáveis.</li>
+        <li><b>Serviços:</b> IA central coordena atendimento, operações, backoffice e indicadores em tempo real.</li>
+        <li><b>Consultorias / B2B:</b> cada cliente vira um “workspace de agentes” com memória, histórico e governança.</li>
+        <li><b>Equipes internas:</b> Orkio integra ferramentas e padroniza execução (SLA, logs, decisões) com segurança.</li>
+      </ul>
+
+      <p class="hint">
+        *O link de demo/app pode ser adicionado depois (ex.: <b>app.orkio.com</b>) sem refazer o site.
+      </p>
     </section>
 
     <div class="sp2"></div>
 
     <section id="organograma" class="card" aria-label="Organograma AI">
       <div class="section-title">
-        <h2>Organograma AI (exemplo de arquitetura operacional)</h2>
+        <h2>Organograma AI (visão rápida para competição & investidores)</h2>
         <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Multi-agentes</span></span>
       </div>
 
       <p class="small muted">
-        Uma forma simples e visual de explicar o Orkio para competição/investidor: “uma empresa operada por agentes”, com governança e integração.
+        Uma forma simples de explicar: o Orkio opera como uma “empresa de agentes” com uma IA executiva no topo.
       </p>
 
       <div class="org" role="img" aria-label="Organograma AI">
-        <!-- Organograma em SVG (não precisa imagem externa) -->
         <svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="gBlue" x1="0" x2="1">
@@ -537,40 +579,32 @@
             </style>
           </defs>
 
-          <!-- Top Node -->
           <rect x="430" y="40" width="340" height="84" class="node" fill="url(#gBlue)" filter="url(#glow)"/>
-          <text x="600" y="78" text-anchor="middle" class="label" style="fill:#061018;font-weight:700;">CEO AI</text>
+          <text x="600" y="78" text-anchor="middle" class="label" style="fill:#061018;font-weight:700;">IA Executiva (CEO AI)</text>
           <text x="600" y="102" text-anchor="middle" class="sub" style="fill:#061018;opacity:.85;">Orquestração • Estratégia • Decisão</text>
 
-          <!-- Lines down -->
           <line x1="600" y1="124" x2="600" y2="170" class="line"/>
           <line x1="180" y1="170" x2="1020" y2="170" class="line"/>
 
-          <!-- Row 2 Nodes -->
-          <!-- CTO AI -->
           <line x1="300" y1="170" x2="300" y2="214" class="line2"/>
           <rect x="170" y="214" width="260" height="80" class="node" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
           <text x="300" y="248" text-anchor="middle" class="label">CTO AI</text>
           <text x="300" y="272" text-anchor="middle" class="sub">Plataforma • APIs • Conectores</text>
 
-          <!-- CFO AI -->
           <line x1="600" y1="170" x2="600" y2="214" class="line2"/>
           <rect x="470" y="214" width="260" height="80" class="node" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
           <text x="600" y="248" text-anchor="middle" class="label">CFO AI</text>
           <text x="600" y="272" text-anchor="middle" class="sub">Métricas • Unit economics • Relatórios</text>
 
-          <!-- COO AI -->
           <line x1="900" y1="170" x2="900" y2="214" class="line2"/>
           <rect x="770" y="214" width="260" height="80" class="node" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
           <text x="900" y="248" text-anchor="middle" class="label">COO AI</text>
           <text x="900" y="272" text-anchor="middle" class="sub">Execução • Workflows • SLA</text>
 
-          <!-- Row 3 connectors -->
           <line x1="300" y1="294" x2="300" y2="330" class="line"/>
           <line x1="600" y1="294" x2="600" y2="330" class="line"/>
           <line x1="900" y1="294" x2="900" y2="330" class="line"/>
 
-          <!-- Row 3 nodes under CTO -->
           <rect x="70" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
           <text x="185" y="360" text-anchor="middle" class="label">Agent Builder</text>
           <text x="185" y="382" text-anchor="middle" class="sub">Studio • Policies • Memory</text>
@@ -579,12 +613,10 @@
           <text x="425" y="360" text-anchor="middle" class="label">Connectors Hub</text>
           <text x="425" y="382" text-anchor="middle" class="sub">Manus • WhatsApp • CRM</text>
 
-          <!-- Under CFO -->
           <rect x="485" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
           <text x="600" y="360" text-anchor="middle" class="label">Analytics</text>
           <text x="600" y="382" text-anchor="middle" class="sub">KPIs • Dashboards • Exports</text>
 
-          <!-- Under COO -->
           <rect x="725" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
           <text x="840" y="360" text-anchor="middle" class="label">Orchestrator</text>
           <text x="840" y="382" text-anchor="middle" class="sub">Scope → Provisioning</text>
@@ -593,17 +625,15 @@
           <text x="1060" y="360" text-anchor="middle" class="label">Trust & Audit</text>
           <text x="1060" y="382" text-anchor="middle" class="sub">RBAC/ABAC • Logs</text>
 
-          <!-- Golden hint node -->
           <rect x="430" y="430" width="340" height="62" class="node" fill="url(#gGold)"/>
           <text x="600" y="468" text-anchor="middle" class="label" style="fill:#1a1406;font-weight:700;">
-            Aplicável a qualquer vertical (Fintech • Consultech • etc.)
+            Aplicável a qualquer vertical (Fintech • B2B • Serviços)
           </text>
         </svg>
       </div>
 
       <div class="org-note">
-        Se você quiser, eu adapto este organograma para refletir os nomes reais dos seus agentes (Chris VP, Laura BP, Auditor AA, AE-02, Integrador AI, Tester AT etc.)
-        e deixo isso como “slide” dentro do próprio site.
+        Quer que eu adapte este organograma para o seu ecossistema real (Daniel + Chris VP + Laura + AA-01 + AE-02 + AI-03 + AT-04)?
       </div>
     </section>
 
@@ -614,8 +644,73 @@
         <h2>Blog</h2>
         <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Atualizações</span></span>
       </div>
-      <p class="small muted">Posts curtos no estilo “changelog” para competição, investidores e parceiros.</p>
+      <p class="small muted">Posts curtos (estilo changelog) para competição, investidores e parceiros.</p>
       <ul class="small">
-        <li><a href="blog/2025-12-17-orkio-why.html">Por que Orkio: a plataforma de orquestração c
+        <li><a href="blog/2025-12-17-orkio-why.html">Por que Orkio: uma IA executiva para negócios</a></li>
+        <li><a href="blog/2025-12-17-intra-agents.html">Intra-agentes: do chat ao sistema operacional</a></li>
+      </ul>
+      <p class="hint">Para evitar 404, crie a pasta <code>blog/</code> e os arquivos acima (posso te mandar prontos).</p>
+    </section>
 
+    <div class="sp2"></div>
 
+    <section id="contato" class="card" aria-label="Contato">
+      <h2>Solicitar apresentação técnica</h2>
+      <p class="small muted">
+        WhatsApp direto: <a href="https://wa.me/5551989697605" target="_blank" rel="noopener">+55 51 98969-7605</a>.
+        Para o formulário enviar email, use Formspree/Tally (GitHub Pages não tem backend).
+      </p>
+
+      <!-- Substitua pelo seu endpoint Formspree quando criar -->
+      <form action="https://formspree.io/f/SEU_ENDPOINT_FORMSPREE" method="POST">
+        <input type="hidden" name="_subject" value="ORKIO — Solicitação de apresentação técnica" />
+
+        <div class="row row-2">
+          <div>
+            <label>Nome</label>
+            <input name="nome" required placeholder="Seu nome" />
+          </div>
+          <div>
+            <label>Empresa</label>
+            <input name="empresa" placeholder="Nome da empresa" />
+          </div>
+        </div>
+
+        <div class="row row-2" style="margin-top:12px;">
+          <div>
+            <label>Email</label>
+            <input name="email" type="email" required placeholder="voce@empresa.com" />
+          </div>
+          <div>
+            <label>WhatsApp</label>
+            <input name="whatsapp" placeholder="+55 (xx) xxxxx-xxxx" />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px;">
+          <div>
+            <label>Use case</label>
+            <textarea name="use_case" rows="4" placeholder="Ex.: atendimento, backoffice, originação, compliance, relatórios..."></textarea>
+          </div>
+        </div>
+
+        <div class="cta" style="margin-top:14px;">
+          <button class="btn primary" type="submit">Enviar</button>
+          <a class="btn gold" href="https://wa.me/5551989697605" target="_blank" rel="noopener">WhatsApp direto</a>
+          <a class="btn" href="#sobre">Voltar</a>
+        </div>
+
+        <div class="hint">
+          Emails alvo: <b>daniel@patroai.com</b> • <b>dangwaebin@gmail.com</b>
+          (para receber nos dois, configure encaminhamento do primeiro para o segundo no seu provedor).
+        </div>
+      </form>
+
+      <footer>
+        <span>© ORKIO™ • Private Beta</span>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Governable AI by PatroAI™</span></span>
+      </footer>
+    </section>
+  </div>
+</body>
+</html>
