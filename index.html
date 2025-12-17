@@ -3,8 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Orkio — IA Executiva que coordena o seu negócio</title>
-  <meta name="description" content="Orkio é uma IA executiva que coordena seu negócio: orquestra agentes, integra sistemas e executa com governança, segurança e rastreabilidade." />
+  <title>Orkio — Governable AI para executar operações reais</title>
+  <meta name="description" content="IA executiva que coordena agentes, integra sistemas e executa com governança, trilhas de auditoria e segurança por design — pronta para B2B." />
+
+  <!-- Open Graph / Share Preview -->
+  <meta property="og:title" content="Orkio — Governable AI para executar operações reais" />
+  <meta property="og:description" content="IA executiva que coordena agentes, integra sistemas e executa com governança, trilhas de auditoria e segurança por design — pronta para B2B." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://danielgraebin.github.io/orkio-site/" />
+  <!-- Crie/coloque uma imagem em assets/og-orkio.png (ex.: 1200x630) -->
+  <meta property="og:image" content="https://danielgraebin.github.io/orkio-site/assets/og-orkio.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0B0F14" />
+  <!-- Opcional: coloque um favicon em assets/favicon.ico -->
+  <link rel="icon" href="assets/favicon.ico" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,383 +25,219 @@
 
   <style>
     :root{
-      /* ORKIO Brand Identity System v1.0 */
-      --bg: #0B0F14;          /* Cosmos Black */
-      --panel: #1A2E45;       /* Deep Blue (hero mid) */
-      --border: #2C3239;      /* Graphite Grey */
-      --text: #F5F7FA;        /* Nebular White */
-      --muted: rgba(245,247,250,.72);
-
-      --primary: #37C5FF;     /* Electric Blue */
-      --primary2:#2bb0e8;     /* Hover */
-      --accent: #F6C453;      /* Aurora Gold */
-      --violet: #7D6BFF;      /* Violet Pulse */
-
-      --radius-lg: 18px;
-      --radius-md: 16px;
-      --radius-sm: 12px;
-
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --shadow-soft: 0 8px 22px rgba(0,0,0,.25);
-
-      --grid-gap: 16px;
-      --max: 1120px;
-
-      --font-title: "Exo 2", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      --font-slogan: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      --bg:#0B0F14; --text:#F5F7FA; --muted:rgba(245,247,250,.72);
+      --primary:#37C5FF; --primary2:#2bb0e8; --accent:#F6C453;
+      --radius-lg:18px; --radius-md:16px; --radius-sm:12px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --shadow-soft:0 8px 22px rgba(0,0,0,.25);
+      --grid-gap:16px; --max:1120px;
+      --font-title:"Exo 2", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      --font-body:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      --font-slogan:"DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
     }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
-    html{ scroll-behavior: smooth; }
+    html{ scroll-behavior:smooth; }
 
     body{
       margin:0;
-      font-family: var(--font-body);
+      font-family:var(--font-body);
       background:
         radial-gradient(1200px 700px at 50% -10%, rgba(55,197,255,.22), transparent 60%),
         radial-gradient(900px 600px at 70% 35%, rgba(125,107,255,.12), transparent 60%),
         var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    a{ color: var(--primary); text-decoration:none; }
-    a:hover{ text-decoration: underline; }
+    a{ color:var(--primary); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
 
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 46px 18px 70px;
-    }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:46px 18px 70px; }
 
     /* Topbar */
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom: 18px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 260px;
-    }
+    .topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; }
+    .brand{ display:flex; align-items:center; gap:12px; min-width:260px; }
 
-    /* Logo fix: não cortar / não deformar / manter proporção */
+    /* Logo (estático / sem recorte / sem deformar) */
     .logo-wrap{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid rgba(245,247,250,.12);
-      background: rgba(255,255,255,.03);
-      display:grid;
-      place-items:center;
-      box-shadow: 0 10px 24px rgba(0,0,0,.25);
-      position: relative;
-      overflow: hidden;
-    }
-    .logo-wrap:before{
-      content:"";
-      position:absolute;
-      inset:-60%;
-      background:
-        radial-gradient(circle at 40% 35%, rgba(55,197,255,.22), transparent 55%),
-        radial-gradient(circle at 65% 60%, rgba(246,196,83,.16), transparent 55%);
-      filter: blur(10px);
-      pointer-events:none;
+      width:52px; height:52px;
+      border-radius:14px;
+      border:1px solid rgba(245,247,250,.12);
+      background:rgba(255,255,255,.03);
+      display:grid; place-items:center;
+      box-shadow:0 10px 24px rgba(0,0,0,.25);
+      overflow:visible;
     }
     .logo{
-      width: 34px;
-      height: 34px;
-      object-fit: contain;
-      object-position: center;
-      display:block;
-      filter: drop-shadow(0 0 16px rgba(55,197,255,.35));
-      animation: orkioPulse 3.3s ease-in-out infinite;
-      position: relative;
-      z-index: 1;
-    }
-    @keyframes orkioPulse{
-      0%,100%{
-        transform: scale(1);
-        opacity: .95;
-        filter: drop-shadow(0 0 14px rgba(55,197,255,.32)) drop-shadow(0 0 10px rgba(246,196,83,.10));
-      }
-      50%{
-        transform: scale(1.06);
-        opacity: 1;
-        filter: drop-shadow(0 0 22px rgba(55,197,255,.55)) drop-shadow(0 0 16px rgba(246,196,83,.20));
-      }
+      width:44px; height:44px;
+      object-fit:contain; object-position:center;
+      display:block; border-radius:0;
+      filter:drop-shadow(0 0 10px rgba(55,197,255,.22));
     }
 
-    .brand h3{
-      font-family: var(--font-title);
-      letter-spacing: .06em;
-      margin:0;
-      font-size: 15px;
-      opacity: .95;
-    }
+    .brand h3{ font-family:var(--font-title); letter-spacing:.06em; margin:0; font-size:15px; opacity:.95; }
 
-    .nav{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .nav a{
-      font-size: 14px;
-      opacity: .86;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-    }
-    .nav a:hover{
-      opacity: 1;
-      background: rgba(255,255,255,.04);
-      border-color: rgba(245,247,250,.10);
-      text-decoration:none;
-    }
+    .nav{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+    .nav a{ font-size:14px; opacity:.86; padding:8px 10px; border-radius:10px; border:1px solid transparent; }
+    .nav a:hover{ opacity:1; background:rgba(255,255,255,.04); border-color:rgba(245,247,250,.10); text-decoration:none; }
 
     /* Hero */
     .hero{
-      position: relative;
-      border: 1px solid rgba(55,197,255,.18);
-      border-radius: var(--radius-lg);
-      padding: 38px 34px;
-      background: linear-gradient(135deg, #0B0F14 0%, #1A2E45 45%, rgba(55,197,255,.22) 100%);
-      box-shadow: var(--shadow);
+      position:relative;
+      border:1px solid rgba(55,197,255,.18);
+      border-radius:var(--radius-lg);
+      padding:38px 34px;
+      background:linear-gradient(135deg, #0B0F14 0%, #1A2E45 45%, rgba(55,197,255,.22) 100%);
+      box-shadow:var(--shadow);
       overflow:hidden;
+      text-align:center;
     }
     .hero:before{
-      content:"";
-      position:absolute;
-      inset:-40%;
+      content:""; position:absolute; inset:-40%;
       background:
         radial-gradient(circle at 30% 30%, rgba(55,197,255,.18), transparent 55%),
         radial-gradient(circle at 70% 60%, rgba(246,196,83,.12), transparent 55%);
-      filter: blur(14px);
+      filter:blur(14px);
       pointer-events:none;
     }
     .hero-inner{ position:relative; z-index:1; }
 
     .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(245,247,250,.15);
-      background: rgba(11,15,20,.35);
-      font-size: 13px;
-      opacity: .95;
-      backdrop-filter: blur(8px);
+      display:inline-flex; align-items:center; gap:10px;
+      padding:7px 12px; border-radius:999px;
+      border:1px solid rgba(245,247,250,.15);
+      background:rgba(11,15,20,.35);
+      font-size:13px; opacity:.95;
+      backdrop-filter:blur(8px);
     }
-    .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 14px rgba(246,196,83,.35);
-    }
+    .dot{ width:8px; height:8px; border-radius:999px; background:var(--accent); box-shadow:0 0 14px rgba(246,196,83,.35); }
 
     h1{
-      font-family: var(--font-title);
-      font-size: 46px;
-      line-height: 1.06;
-      margin: 14px 0 10px;
-      letter-spacing: .01em;
+      font-family:var(--font-title);
+      font-size:46px; line-height:1.06;
+      margin:14px 0 10px; letter-spacing:.01em;
     }
-
     .lead{
-      font-size: 16px;
-      line-height: 1.75;
-      max-width: 920px;
-      opacity: .92;
-      margin: 0 0 10px;
+      font-size:16px; line-height:1.75;
+      max-width:920px;
+      opacity:.92;
+      margin:0 auto 10px;
     }
-
     .slogan{
-      font-family: var(--font-slogan);
-      font-style: italic;
-      opacity: .88;
-      margin-top: 10px;
-      line-height: 1.5;
+      font-family:var(--font-slogan);
+      font-style:italic;
+      opacity:.88;
+      margin-top:10px;
+      line-height:1.5;
     }
 
-    .cta{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
+    .cta{ display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:18px; }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 16px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(245,247,250,.18);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      font-weight: 600;
-      font-size: 14px;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px;
+      border-radius:var(--radius-sm);
+      border:1px solid rgba(245,247,250,.18);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:600; font-size:14px;
       text-decoration:none;
-      box-shadow: var(--shadow-soft);
-      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+      box-shadow:var(--shadow-soft);
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
     }
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(55,197,255,.35);
-      background: rgba(255,255,255,.05);
-      text-decoration:none;
-    }
+    .btn:hover{ transform:translateY(-1px); border-color:rgba(55,197,255,.35); background:rgba(255,255,255,.05); text-decoration:none; }
     .btn.primary{
-      background: linear-gradient(180deg, rgba(55,197,255,.95), rgba(55,197,255,.72));
-      border-color: rgba(55,197,255,.65);
-      color: #061018;
+      background:linear-gradient(180deg, rgba(55,197,255,.95), rgba(55,197,255,.72));
+      border-color:rgba(55,197,255,.65);
+      color:#061018;
     }
     .btn.primary:hover{
-      background: linear-gradient(180deg, rgba(43,176,232,.95), rgba(43,176,232,.72));
-      border-color: rgba(43,176,232,.75);
-      box-shadow: 0 10px 32px rgba(55,197,255,.22);
+      background:linear-gradient(180deg, rgba(43,176,232,.95), rgba(43,176,232,.72));
+      border-color:rgba(43,176,232,.75);
+      box-shadow:0 10px 32px rgba(55,197,255,.22);
     }
     .btn.gold{
-      background: linear-gradient(180deg, rgba(246,196,83,.96), rgba(246,196,83,.70));
-      border-color: rgba(246,196,83,.70);
-      color: #1a1406;
+      background:linear-gradient(180deg, rgba(246,196,83,.96), rgba(246,196,83,.70));
+      border-color:rgba(246,196,83,.70);
+      color:#1a1406;
     }
-    .btn.gold:hover{
-      box-shadow: 0 10px 28px rgba(246,196,83,.18);
-      border-color: rgba(246,196,83,.85);
-    }
+    .btn.gold:hover{ box-shadow:0 10px 28px rgba(246,196,83,.18); border-color:rgba(246,196,83,.85); }
 
-    .muted{ opacity: .74; }
-    .small{ font-size: 14px; }
-    .sp{ height: 18px; }
-    .sp2{ height: 24px; }
+    .btn.whatsapp{ padding:12px 14px; }
+    .wa-icon{ width:18px; height:18px; display:block; }
+
+    .muted{ opacity:.74; }
+    .small{ font-size:14px; }
+    .sp2{ height:24px; }
 
     /* Cards / grids */
-    .grid{ display:grid; gap: var(--grid-gap); }
+    .grid{ display:grid; gap:var(--grid-gap); }
     @media(min-width: 920px){
-      .grid-2{ grid-template-columns: 1fr 1fr; }
-      .grid-3{ grid-template-columns: 1fr 1fr 1fr; }
+      .grid-2{ grid-template-columns:1fr 1fr; }
+      .grid-3{ grid-template-columns:1fr 1fr 1fr; }
     }
 
     .card{
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(245,247,250,.12);
-      background: rgba(26,46,69,.24);
-      padding: 22px;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(10px);
+      border-radius:var(--radius-md);
+      border:1px solid rgba(245,247,250,.12);
+      background:rgba(26,46,69,.24);
+      padding:22px;
+      box-shadow:var(--shadow-soft);
+      backdrop-filter:blur(10px);
     }
-    .card h2{
-      font-family: var(--font-title);
-      font-size: 20px;
-      margin: 0 0 10px;
-      letter-spacing: .01em;
-    }
-    .card p{ margin: 0; line-height: 1.7; opacity: .92; }
-    ul,ol{ margin: 10px 0 0 18px; }
-    li{ margin: 6px 0; opacity: .92; }
+    .card h2{ font-family:var(--font-title); font-size:20px; margin:0 0 10px; letter-spacing:.01em; }
+    .card p{ margin:0; line-height:1.7; opacity:.92; }
+    ul{ margin:10px 0 0 18px; }
+    li{ margin:6px 0; opacity:.92; }
 
-    .section-title{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin: 18px 0 12px;
-    }
-    .section-title h2{
-      margin:0;
-      font-family: var(--font-title);
-      letter-spacing: .01em;
-    }
+    .section-title{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin:18px 0 12px; }
+    .section-title h2{ margin:0; font-family:var(--font-title); letter-spacing:.01em; }
 
     .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(245,247,250,.12);
-      background: rgba(255,255,255,.03);
-      font-size: 13px;
-      opacity: .9;
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(245,247,250,.12);
+      background:rgba(255,255,255,.03);
+      font-size:13px; opacity:.9;
     }
-    .chip .mini-dot{
-      width:8px;height:8px;border-radius:999px;background: var(--primary);
-      box-shadow: 0 0 12px rgba(55,197,255,.25);
-    }
+    .chip .mini-dot{ width:8px; height:8px; border-radius:999px; background:var(--primary); box-shadow:0 0 12px rgba(55,197,255,.25); }
 
     /* Org chart */
     .org{
-      padding: 18px;
-      border-radius: 14px;
-      border: 1px solid rgba(245,247,250,.10);
-      background: rgba(11,15,20,.35);
-      overflow: auto;
+      padding:18px;
+      border-radius:14px;
+      border:1px solid rgba(245,247,250,.10);
+      background:rgba(11,15,20,.35);
+      overflow:auto;
     }
-    .org svg{
-      width: 100%;
-      height: auto;
-      min-width: 880px;
-      display:block;
-    }
-    .org-note{
-      margin-top: 12px;
-      font-size: 13px;
-      opacity: .72;
-      line-height: 1.6;
-    }
+    .org svg{ width:100%; height:auto; min-width:980px; display:block; }
 
     /* Form */
-    form{ margin-top: 10px; }
-    label{ font-size: 13px; opacity: .82; display:block; margin-bottom: 6px; }
+    form{ margin-top:10px; }
+    label{ font-size:13px; opacity:.82; display:block; margin-bottom:6px; }
     input, textarea{
-      width: 100%;
-      padding: 12px 12px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(245,247,250,.14);
-      background: rgba(11,15,20,.55);
-      color: var(--text);
-      outline: none;
-      transition: border-color .18s ease, box-shadow .18s ease;
+      width:100%;
+      padding:12px 12px;
+      border-radius:var(--radius-sm);
+      border:1px solid rgba(245,247,250,.14);
+      background:rgba(11,15,20,.55);
+      color:var(--text);
+      outline:none;
+      transition:border-color .18s ease, box-shadow .18s ease;
     }
-    input:focus, textarea:focus{
-      border-color: rgba(55,197,255,.55);
-      box-shadow: 0 0 0 4px rgba(55,197,255,.10);
-    }
-    .row{ display:grid; gap: 12px; }
-    @media(min-width: 920px){
-      .row-2{ grid-template-columns: 1fr 1fr; }
-    }
-    .hint{ margin-top: 10px; font-size: 13px; opacity: .72; line-height: 1.6; }
+    input:focus, textarea:focus{ border-color:rgba(55,197,255,.55); box-shadow:0 0 0 4px rgba(55,197,255,.10); }
+    .row{ display:grid; gap:12px; }
+    @media(min-width:920px){ .row-2{ grid-template-columns:1fr 1fr; } }
 
     footer{
-      margin-top: 22px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(245,247,250,.10);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      opacity: .78;
-      font-size: 13px;
-    }
-
-    @media print{
-      .btn, .nav{ display:none !important; }
-      body{ background:white; color:#111; }
-      .card, .hero{ box-shadow:none; background:white; border-color:#ddd; }
+      margin-top:22px; padding-top:18px;
+      border-top:1px solid rgba(245,247,250,.10);
+      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+      opacity:.78; font-size:13px;
     }
   </style>
 </head>
@@ -398,7 +247,6 @@
     <div class="topbar">
       <div class="brand">
         <div class="logo-wrap">
-          <!-- Suba o logo no repo em: assets/orkio-logo.png -->
           <img class="logo" src="assets/orkio-logo.png" alt="ORKIO Logo" />
         </div>
         <div>
@@ -410,8 +258,9 @@
       <nav class="nav" aria-label="Navegação">
         <a href="#sobre">Sobre</a>
         <a href="#diferenciais">Diferenciais</a>
+        <a href="#para-quem">Para quem é</a>
         <a href="#casos">Uso na prática</a>
-        <a href="#organograma">Organograma AI</a>
+        <a href="#organograma">Arquitetura</a>
         <a href="#blog">Blog</a>
         <a href="#contato">Contato</a>
       </nav>
@@ -421,14 +270,11 @@
       <div class="hero-inner">
         <span class="tag"><span class="dot" aria-hidden="true"></span> Private Beta • B2B-ready • Segurança & Governança</span>
 
-        <h1>
-          Uma IA executiva<br>
-          que coordena o seu negócio
-        </h1>
+        <h1>Orkio — Governable AI para executar operações reais</h1>
 
         <p class="lead">
-          O <b>Orkio</b> funciona como um <b>cérebro operacional de IA</b>: coordena agentes especializados,
-          integra sistemas e executa decisões com <b>governança</b>, <b>rastreamento ponta a ponta</b> e <b>segurança por design</b>.
+          Uma <b>IA executiva</b> que coordena agentes, integra sistemas e executa processos com
+          <b>governança</b>, <b>trilha de auditoria</b> e <b>segurança por design</b> — pronta para B2B.
         </p>
 
         <div class="slogan">
@@ -437,13 +283,21 @@
         </div>
 
         <div class="cta">
-          <a class="btn primary" href="#contato">Solicitar apresentação técnica</a>
-          <a class="btn" href="#diferenciais">Ver por que é diferente</a>
-          <a class="btn gold" href="https://wa.me/5551989697605" target="_blank" rel="noopener">WhatsApp: +55 51 98969-7605</a>
+          <a class="btn primary" href="#contato">Agendar demo (15 min)</a>
+          <a class="btn" href="#organograma">Ver arquitetura</a>
+
+          <!-- WhatsApp (ícone) com mensagem pré-preenchida -->
+          <a class="btn gold whatsapp"
+             href="https://wa.me/5551989697605?text=Ol%C3%A1!%20Quero%20agendar%20uma%20demo%20do%20ORKIO.%20Meu%20nome%20%C3%A9%20____%20e%20o%20use%20case%20%C3%A9%20____."
+             target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+            <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path fill="#1a1406" d="M19.11 17.39c-.27-.13-1.6-.79-1.85-.88-.25-.09-.43-.13-.6.13-.18.27-.69.88-.84 1.06-.16.18-.31.2-.58.07-.27-.13-1.12-.41-2.13-1.3-.79-.7-1.32-1.56-1.47-1.82-.16-.27-.02-.41.12-.55.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.13-.6-1.45-.83-1.99-.22-.53-.45-.46-.6-.47h-.52c-.18 0-.47.07-.71.34-.25.27-.93.91-.93 2.21s.95 2.55 1.08 2.73c.13.18 1.87 2.86 4.53 4.01.63.27 1.12.43 1.5.55.63.2 1.21.17 1.67.1.51-.08 1.6-.65 1.82-1.28.22-.63.22-1.17.15-1.28-.07-.11-.25-.18-.52-.31ZM16.03 27.6h-.01c-1.84 0-3.64-.5-5.22-1.44l-.37-.22-3.88 1.02 1.04-3.78-.24-.39c-1-1.62-1.53-3.5-1.53-5.44 0-5.76 4.7-10.45 10.48-10.45 2.79 0 5.41 1.08 7.38 3.04 1.97 1.96 3.06 4.57 3.06 7.36 0 5.76-4.71 10.45-10.49 10.45Zm8.94-19.4A12.51 12.51 0 0 0 16.03 4.5C9.11 4.5 3.48 10.12 3.48 17.03c0 2.2.58 4.35 1.69 6.24L3.4 29.5l6.38-1.67a12.5 12.5 0 0 0 6.25 1.66h.01c6.91 0 12.54-5.62 12.54-12.53 0-3.35-1.31-6.5-3.61-8.76Z"/>
+            </svg>
+          </a>
         </div>
 
-        <div class="hint">
-          Acesso ao Orkio (demo) sob convite. Contato direto: <a href="https://wa.me/5551989697605" target="_blank" rel="noopener">WhatsApp</a>.
+        <div class="muted small" style="margin-top:10px;">
+          Ideal para processos regulados: finanças, crédito, compliance, backoffice e operações.
         </div>
       </div>
     </section>
@@ -485,10 +339,11 @@
     <section id="diferenciais" class="card" aria-label="Diferenciais">
       <div class="section-title">
         <h2>Por que o Orkio é diferente</h2>
-        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>IA Executiva</span></span>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>B2B</span></span>
       </div>
 
-      <div class="grid grid-3">
+      <!-- 4 cards (2 col no desktop) -->
+      <div class="grid grid-2">
         <div class="card">
           <h2>IA Centralizada</h2>
           <p>
@@ -501,7 +356,7 @@
           <h2>Agentes como Executivos</h2>
           <p>
             Cada agente tem papel claro: <b>CEO AI</b>, <b>CFO AI</b>, Operações, Dados, Compliance.
-            Eles colaboram como uma organização real — com handoffs e responsabilidades.
+            Colaboração real com handoffs e responsabilidades.
           </p>
         </div>
 
@@ -509,10 +364,37 @@
           <h2>Governança por Design</h2>
           <p>
             Logs, políticas, isolamento por organização e auditoria <b>não são extras</b>.
-            São parte da arquitetura desde o início — ideal para B2B.
+            São parte da arquitetura desde o início — ideal para operações críticas.
           </p>
         </div>
+
+        <div class="card">
+          <h2>Auditável de ponta a ponta</h2>
+          <p>
+            Cada ação executada por agentes pode ser <b>rastreada</b>, <b>justificada</b> e <b>exportada</b>.
+            Aprovações, políticas e logs por organização (multi-tenant).
+          </p>
+          <ul class="small">
+            <li>RBAC/ABAC e isolamento por tenant</li>
+            <li>Trilhas exportáveis (CSV/JSON) para auditoria</li>
+            <li>Controle hierárquico: ações sensíveis exigem aprovação</li>
+          </ul>
+        </div>
       </div>
+    </section>
+
+    <div class="sp2"></div>
+
+    <section id="para-quem" class="card" aria-label="Para quem é">
+      <div class="section-title">
+        <h2>Para quem é</h2>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>B2B</span></span>
+      </div>
+      <ul class="small">
+        <li><b>Bancos e gestoras:</b> crédito, compliance, dossiês, relatórios e trilhas auditáveis.</li>
+        <li><b>Empresas com operações críticas:</b> backoffice, SLA, integrações e governança.</li>
+        <li><b>Consultorias B2B:</b> cada cliente vira um workspace com agentes e memória isolada.</li>
+      </ul>
     </section>
 
     <div class="sp2"></div>
@@ -520,43 +402,39 @@
     <section id="casos" class="card" aria-label="Uso na prática">
       <div class="section-title">
         <h2>O que o Orkio faz na prática</h2>
-        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Casos reais</span></span>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Casos</span></span>
       </div>
 
       <ul class="small">
-        <li><b>Fintech:</b> CEO AI define estratégia → CFO AI analisa métricas → agentes executam onboarding, risco, compliance e relatórios auditáveis.</li>
-        <li><b>Serviços:</b> IA central coordena atendimento, operações, backoffice e indicadores em tempo real.</li>
+        <li><b>Fintech:</b> IA executiva define estratégia → CFO AI analisa métricas → agentes executam onboarding, risco, compliance e relatórios auditáveis.</li>
+        <li><b>Serviços:</b> coordena atendimento, operações, backoffice e indicadores em tempo real.</li>
         <li><b>Consultorias / B2B:</b> cada cliente vira um “workspace de agentes” com memória, histórico e governança.</li>
-        <li><b>Equipes internas:</b> Orkio integra ferramentas e padroniza execução (SLA, logs, decisões) com segurança.</li>
+        <li><b>Equipes internas:</b> integra ferramentas e padroniza execução (SLA, logs, decisões) com segurança.</li>
       </ul>
 
-      <p class="hint">
+      <p class="muted small" style="margin-top:10px; line-height:1.6;">
         *O link de demo/app pode ser adicionado depois (ex.: <b>app.orkio.com</b>) sem refazer o site.
       </p>
     </section>
 
     <div class="sp2"></div>
 
-    <section id="organograma" class="card" aria-label="Organograma AI">
+    <section id="organograma" class="card" aria-label="Arquitetura">
       <div class="section-title">
-        <h2>Organograma AI (visão rápida para competição & investidores)</h2>
-        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Multi-agentes</span></span>
+        <h2>Arquitetura (1 página)</h2>
+        <span class="chip"><span class="mini-dot" aria-hidden="true"></span><span>Agents Graph</span></span>
       </div>
 
       <p class="small muted">
         Uma forma simples de explicar: o Orkio opera como uma “empresa de agentes” com uma IA executiva no topo.
       </p>
 
-      <div class="org" role="img" aria-label="Organograma AI">
-        <svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg">
+      <div class="org" role="img" aria-label="Arquitetura do Orkio">
+        <svg viewBox="0 0 1400 520" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="gBlue" x1="0" x2="1">
               <stop offset="0" stop-color="#37C5FF" stop-opacity="0.95"/>
               <stop offset="1" stop-color="#2bb0e8" stop-opacity="0.75"/>
-            </linearGradient>
-            <linearGradient id="gGold" x1="0" x2="1">
-              <stop offset="0" stop-color="#F6C453" stop-opacity="0.95"/>
-              <stop offset="1" stop-color="#F6C453" stop-opacity="0.70"/>
             </linearGradient>
             <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
               <feGaussianBlur stdDeviation="6" result="b"/>
@@ -565,13 +443,9 @@
                         0 0 0 0 0.77
                         0 0 0 0 1
                         0 0 0 0.9 0"/>
-              <feMerge>
-                <feMergeNode/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
+              <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
             <style>
-              .node { rx:16; ry:16; }
               .label { font-family: Inter, Arial; font-size: 16px; fill: #F5F7FA; }
               .sub { font-family: Inter, Arial; font-size: 13px; fill: rgba(245,247,250,.78); }
               .line { stroke: rgba(245,247,250,.18); stroke-width: 2; }
@@ -579,61 +453,52 @@
             </style>
           </defs>
 
-          <rect x="430" y="40" width="340" height="84" class="node" fill="url(#gBlue)" filter="url(#glow)"/>
-          <text x="600" y="78" text-anchor="middle" class="label" style="fill:#061018;font-weight:700;">IA Executiva (CEO AI)</text>
-          <text x="600" y="102" text-anchor="middle" class="sub" style="fill:#061018;opacity:.85;">Orquestração • Estratégia • Decisão</text>
+          <rect x="530" y="40" width="340" height="84" rx="16" ry="16" fill="url(#gBlue)" filter="url(#glow)"/>
+          <text x="700" y="78" text-anchor="middle" class="label" style="fill:#061018;font-weight:700;">IA Executiva (CEO AI)</text>
+          <text x="700" y="102" text-anchor="middle" class="sub" style="fill:#061018;opacity:.85;">Orquestração • Estratégia • Decisão</text>
 
-          <line x1="600" y1="124" x2="600" y2="170" class="line"/>
-          <line x1="180" y1="170" x2="1020" y2="170" class="line"/>
+          <line x1="700" y1="124" x2="700" y2="170" class="line"/>
+          <line x1="220" y1="170" x2="1180" y2="170" class="line"/>
 
-          <line x1="300" y1="170" x2="300" y2="214" class="line2"/>
-          <rect x="170" y="214" width="260" height="80" class="node" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
-          <text x="300" y="248" text-anchor="middle" class="label">CTO AI</text>
-          <text x="300" y="272" text-anchor="middle" class="sub">Plataforma • APIs • Conectores</text>
+          <line x1="350" y1="170" x2="350" y2="214" class="line2"/>
+          <rect x="220" y="214" width="260" height="80" rx="16" ry="16" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
+          <text x="350" y="248" text-anchor="middle" class="label">CTO AI</text>
+          <text x="350" y="272" text-anchor="middle" class="sub">Plataforma • APIs • Conectores</text>
 
-          <line x1="600" y1="170" x2="600" y2="214" class="line2"/>
-          <rect x="470" y="214" width="260" height="80" class="node" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
-          <text x="600" y="248" text-anchor="middle" class="label">CFO AI</text>
-          <text x="600" y="272" text-anchor="middle" class="sub">Métricas • Unit economics • Relatórios</text>
+          <line x1="700" y1="170" x2="700" y2="214" class="line2"/>
+          <rect x="570" y="214" width="260" height="80" rx="16" ry="16" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
+          <text x="700" y="248" text-anchor="middle" class="label">CFO AI</text>
+          <text x="700" y="272" text-anchor="middle" class="sub">Métricas • Unit economics • Relatórios</text>
 
-          <line x1="900" y1="170" x2="900" y2="214" class="line2"/>
-          <rect x="770" y="214" width="260" height="80" class="node" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
-          <text x="900" y="248" text-anchor="middle" class="label">COO AI</text>
-          <text x="900" y="272" text-anchor="middle" class="sub">Execução • Workflows • SLA</text>
+          <line x1="1050" y1="170" x2="1050" y2="214" class="line2"/>
+          <rect x="920" y="214" width="260" height="80" rx="16" ry="16" fill="rgba(26,46,69,.65)" stroke="rgba(245,247,250,.12)"/>
+          <text x="1050" y="248" text-anchor="middle" class="label">COO AI</text>
+          <text x="1050" y="272" text-anchor="middle" class="sub">Execução • Workflows • SLA</text>
 
-          <line x1="300" y1="294" x2="300" y2="330" class="line"/>
-          <line x1="600" y1="294" x2="600" y2="330" class="line"/>
-          <line x1="900" y1="294" x2="900" y2="330" class="line"/>
+          <line x1="350" y1="294" x2="350" y2="330" class="line"/>
+          <line x1="700" y1="294" x2="700" y2="330" class="line"/>
+          <line x1="1050" y1="294" x2="1050" y2="330" class="line"/>
 
-          <rect x="70" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
-          <text x="185" y="360" text-anchor="middle" class="label">Agent Builder</text>
-          <text x="185" y="382" text-anchor="middle" class="sub">Studio • Policies • Memory</text>
+          <rect x="80" y="330" width="250" height="72" rx="16" ry="16" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="205" y="360" text-anchor="middle" class="label">Agent Builder</text>
+          <text x="205" y="382" text-anchor="middle" class="sub">Studio • Policies • Memory</text>
 
-          <rect x="310" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
-          <text x="425" y="360" text-anchor="middle" class="label">Connectors Hub</text>
-          <text x="425" y="382" text-anchor="middle" class="sub">Manus • WhatsApp • CRM</text>
+          <rect x="360" y="330" width="270" height="72" rx="16" ry="16" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="495" y="360" text-anchor="middle" class="label">Connectors Hub</text>
+          <text x="495" y="382" text-anchor="middle" class="sub">Manus • WhatsApp • CRM/KPIs</text>
 
-          <rect x="485" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
-          <text x="600" y="360" text-anchor="middle" class="label">Analytics</text>
-          <text x="600" y="382" text-anchor="middle" class="sub">KPIs • Dashboards • Exports</text>
+          <rect x="710" y="330" width="260" height="72" rx="16" ry="16" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="840" y="360" text-anchor="middle" class="label">Analytics</text>
+          <text x="840" y="382" text-anchor="middle" class="sub">Dashboards • Exports</text>
 
-          <rect x="725" y="330" width="230" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
-          <text x="840" y="360" text-anchor="middle" class="label">Orchestrator</text>
-          <text x="840" y="382" text-anchor="middle" class="sub">Scope → Provisioning</text>
+          <rect x="1000" y="330" width="260" height="72" rx="16" ry="16" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="1130" y="360" text-anchor="middle" class="label">Orchestrator</text>
+          <text x="1130" y="382" text-anchor="middle" class="sub">Scope → Provisioning</text>
 
-          <rect x="965" y="330" width="190" height="72" class="node" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
-          <text x="1060" y="360" text-anchor="middle" class="label">Trust & Audit</text>
-          <text x="1060" y="382" text-anchor="middle" class="sub">RBAC/ABAC • Logs</text>
-
-          <rect x="430" y="430" width="340" height="62" class="node" fill="url(#gGold)"/>
-          <text x="600" y="468" text-anchor="middle" class="label" style="fill:#1a1406;font-weight:700;">
-            Aplicável a qualquer vertical (Fintech • B2B • Serviços)
-          </text>
+          <rect x="1210" y="330" width="170" height="72" rx="16" ry="16" fill="rgba(11,15,20,.55)" stroke="rgba(245,247,250,.12)"/>
+          <text x="1295" y="360" text-anchor="middle" class="label">Trust & Audit</text>
+          <text x="1295" y="382" text-anchor="middle" class="sub">RBAC/ABAC • Logs</text>
         </svg>
-      </div>
-
-      <div class="org-note">
-        Quer que eu adapte este organograma para o seu ecossistema real (Daniel + Chris VP + Laura + AA-01 + AE-02 + AI-03 + AT-04)?
       </div>
     </section>
 
@@ -646,24 +511,25 @@
       </div>
       <p class="small muted">Posts curtos (estilo changelog) para competição, investidores e parceiros.</p>
       <ul class="small">
-        <li><a href="blog/2025-12-17-orkio-why.html">Por que Orkio: uma IA executiva para negócios</a></li>
+        <li><a href="blog/2025-12-17-orkio-why.html">Por que Orkio: Governable AI para operações reais</a></li>
         <li><a href="blog/2025-12-17-intra-agents.html">Intra-agentes: do chat ao sistema operacional</a></li>
       </ul>
-      <p class="hint">Para evitar 404, crie a pasta <code>blog/</code> e os arquivos acima (posso te mandar prontos).</p>
+      <p class="muted small" style="margin-top:10px;">Para evitar 404, crie a pasta <code>blog/</code> e os arquivos acima.</p>
     </section>
 
     <div class="sp2"></div>
 
     <section id="contato" class="card" aria-label="Contato">
-      <h2>Solicitar apresentação técnica</h2>
+      <h2>Agendar demo (15 min)</h2>
       <p class="small muted">
-        WhatsApp direto: <a href="https://wa.me/5551989697605" target="_blank" rel="noopener">+55 51 98969-7605</a>.
-        Para o formulário enviar email, use Formspree/Tally (GitHub Pages não tem backend).
+        GitHub Pages não tem backend nativo para e-mail. Use Formspree/Tally no endpoint do formulário.
       </p>
 
-      <!-- Substitua pelo seu endpoint Formspree quando criar -->
       <form action="https://formspree.io/f/SEU_ENDPOINT_FORMSPREE" method="POST">
-        <input type="hidden" name="_subject" value="ORKIO — Solicitação de apresentação técnica" />
+        <input type="hidden" name="_subject" value="ORKIO — Solicitação de demo (15 min)" />
+
+        <!-- Honeypot anti-spam -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
         <div class="row row-2">
           <div>
@@ -690,19 +556,27 @@
         <div class="row" style="margin-top:12px;">
           <div>
             <label>Use case</label>
-            <textarea name="use_case" rows="4" placeholder="Ex.: atendimento, backoffice, originação, compliance, relatórios..."></textarea>
+            <textarea name="use_case" rows="4" placeholder="Ex.: crédito, compliance, backoffice, relatórios, integrações..."></textarea>
           </div>
         </div>
 
+        <label style="margin-top:10px;">
+          <input type="checkbox" required style="width:auto; margin-right:8px;">
+          Concordo em ser contatado e com o uso dos dados para retorno comercial.
+        </label>
+
         <div class="cta" style="margin-top:14px;">
           <button class="btn primary" type="submit">Enviar</button>
-          <a class="btn gold" href="https://wa.me/5551989697605" target="_blank" rel="noopener">WhatsApp direto</a>
-          <a class="btn" href="#sobre">Voltar</a>
-        </div>
 
-        <div class="hint">
-          Emails alvo: <b>daniel@patroai.com</b> • <b>dangwaebin@gmail.com</b>
-          (para receber nos dois, configure encaminhamento do primeiro para o segundo no seu provedor).
+          <a class="btn gold whatsapp"
+             href="https://wa.me/5551989697605?text=Ol%C3%A1!%20Quero%20agendar%20uma%20demo%20do%20ORKIO.%20Meu%20nome%20%C3%A9%20____%20e%20o%20use%20case%20%C3%A9%20____."
+             target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+            <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path fill="#1a1406" d="M19.11 17.39c-.27-.13-1.6-.79-1.85-.88-.25-.09-.43-.13-.6.13-.18.27-.69.88-.84 1.06-.16.18-.31.2-.58.07-.27-.13-1.12-.41-2.13-1.3-.79-.7-1.32-1.56-1.47-1.82-.16-.27-.02-.41.12-.55.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.13-.6-1.45-.83-1.99-.22-.53-.45-.46-.6-.47h-.52c-.18 0-.47.07-.71.34-.25.27-.93.91-.93 2.21s.95 2.55 1.08 2.73c.13.18 1.87 2.86 4.53 4.01.63.27 1.12.43 1.5.55.63.2 1.21.17 1.67.1.51-.08 1.6-.65 1.82-1.28.22-.63.22-1.17.15-1.28-.07-.11-.25-.18-.52-.31ZM16.03 27.6h-.01c-1.84 0-3.64-.5-5.22-1.44l-.37-.22-3.88 1.02 1.04-3.78-.24-.39c-1-1.62-1.53-3.5-1.53-5.44 0-5.76 4.7-10.45 10.48-10.45 2.79 0 5.41 1.08 7.38 3.04 1.97 1.96 3.06 4.57 3.06 7.36 0 5.76-4.71 10.45-10.49 10.45Zm8.94-19.4A12.51 12.51 0 0 0 16.03 4.5C9.11 4.5 3.48 10.12 3.48 17.03c0 2.2.58 4.35 1.69 6.24L3.4 29.5l6.38-1.67a12.5 12.5 0 0 0 6.25 1.66h.01c6.91 0 12.54-5.62 12.54-12.53 0-3.35-1.31-6.5-3.61-8.76Z"/>
+            </svg>
+          </a>
+
+          <a class="btn" href="#sobre">Voltar</a>
         </div>
       </form>
 
